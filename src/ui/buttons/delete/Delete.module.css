@@ -1,0 +1,10 @@
+.Delete {
+    width: 100%;
+    max-width: 100px;
+    height: 2vw;
+
+    background-color: #e73832;
+    color:  #fff;
+
+    border: none;
+}
