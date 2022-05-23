@@ -1,0 +1,10 @@
+.Done {
+    width: 100%;
+    max-width: 100px;
+    height: 2vw;
+
+    background-color: #4ec955;
+    color:  #fff;
+
+    border: none;
+}
