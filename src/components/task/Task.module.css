@@ -1,0 +1,21 @@
+.Task {
+    max-width: 400px;
+    width: 100%;
+
+    padding: 4px 8px;
+    box-sizing: border-box;
+
+    border: 1px solid;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+ 
+}
+.TaskButtons {
+    width: 100%;
+    display: flex;
+    flex: 1 1 130px;
+    justify-content: space-around;
+}

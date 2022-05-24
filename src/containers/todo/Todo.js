@@ -1,16 +1,16 @@
 import classes from '../todo/Todo.module.css';
 import Delete from '../../ui/buttons/delete/Delete';
 import Done from '../../ui/buttons/done/Done';
+import Task from '../../components/task/Task';
 
 const Todo = (props) => {
     return (
-        <h1
+        <div
             className={classes.Todo}
         >
-            <Done />
-            <Delete />
             Hello, from Todo!
-        </h1>
+            <Task />
+        </div>
     )
 }
 export default Todo;
