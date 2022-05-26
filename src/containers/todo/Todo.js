@@ -1,7 +1,7 @@
 import classes from '../todo/Todo.module.css';
-import Delete from '../../ui/buttons/delete/Delete';
-import Done from '../../ui/buttons/done/Done';
 import Task from '../../components/task/Task';
+
+import CalendarContainer from '../calendarContainer/CalendarContainer'
 
 const Todo = (props) => {
     return (
@@ -10,6 +10,9 @@ const Todo = (props) => {
         >
             Hello, from Todo!
             <Task />
+            <CalendarContainer />
+
+
         </div>
     )
 }

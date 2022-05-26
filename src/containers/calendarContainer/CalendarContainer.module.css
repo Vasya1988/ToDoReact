@@ -1,0 +1,11 @@
+.CalendarContainer {
+    width: 100%;
+    max-width: 400px;
+
+    display: flex;
+    
+    padding: 4px 8px;
+    box-sizing: border-box;
+    
+    /* background-color: rgb(151, 190, 153); */
+}
