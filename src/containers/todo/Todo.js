@@ -10,7 +10,9 @@ const Todo = (props) => {
         >
             Hello, from Todo!
             <Task />
-            <CalendarContainer />
+            <CalendarContainer 
+                getDate={props.getDate}
+            />
 
 
         </div>

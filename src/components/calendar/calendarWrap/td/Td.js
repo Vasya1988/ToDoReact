@@ -5,7 +5,7 @@ const Td = (props) => {
     return (
         <td
             className={classes.Td}
-        ></td>
+        >{props.day}</td>
     )
 }
 export default Td;
