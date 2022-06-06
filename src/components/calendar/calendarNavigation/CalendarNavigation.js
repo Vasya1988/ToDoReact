@@ -1,16 +1,21 @@
 import classes from '../calendarNavigation/CalendarNavigation.module.css';
-import Month from './month/Month';
-import BackButon from './backButton/BackButton';
-import ForwardButton from './forwardButton/ForwardButton';
 
 const CalendarNavigation =(props) => {
     return (
         <div
             className={classes.CalendarNavigation}
         >
-            <BackButon />
-            <Month />
-            <ForwardButton />
+            <button
+                className={classes.BackButton}
+                data-button='back'
+                onClick={(e) => {
+                    props.changeDate(e.target.dataset.button)
+                }}
+            ></button>
+            <span className={classes.Month}>gf</span>
+            <button
+                className={classes.ForwardButton}
+            ></button>
         </div>
     )
 }

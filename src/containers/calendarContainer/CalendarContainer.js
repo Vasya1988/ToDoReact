@@ -8,10 +8,13 @@ const CalendarContainer = (props) => {
         <div
             className={classes.CalendarContainer}
         >
-            <CalendarNavigation />
+            <CalendarNavigation 
+                changeDate={props.changeDate}
+            />
             <DaysOfWeek />
             <CalendarWrap 
-                getDate={props.getDate}
+                day={props.day}
+                calendar={props.calendar}
             />
         </div>
     )

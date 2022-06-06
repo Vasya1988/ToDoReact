@@ -1,15 +1,19 @@
 import React from 'react';
 import classes from '../calendarWrap/CalendarWrap.module.css';
-import Td from './td/Td';
-import Tr from './td/tr/Tr';
+import Tr from './tr/Tr';
+
 
 const CalendarWrap = (props) => {
     return (
-        <div
+        <table
             className={classes.CalendarWrap}
-        >
-            {props.getDate()}
-        </div>
+            >
+                <thead></thead>
+                <tbody>
+                    {props.calendar()}
+                </tbody>
+              
+        </table>
     )
 }
 export default CalendarWrap;

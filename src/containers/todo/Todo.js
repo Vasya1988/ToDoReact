@@ -11,7 +11,9 @@ const Todo = (props) => {
             Hello, from Todo!
             <Task />
             <CalendarContainer 
-                getDate={props.getDate}
+                calendar={props.calendar}
+                day={props.day}
+                changeDate={props.changeDate}
             />
 
 

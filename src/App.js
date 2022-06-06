@@ -5,86 +5,89 @@ import Todo from './containers/todo/Todo';
 
 function App() {
 
-  const [date, setDate] = useState( new Date() ) 
-  const [year, setYear] = useState( date.getFullYear() ) 
-  const [month, setMonth] = useState( date.getMonth() ) 
-  const [lastDay, setLastDay] = useState( new Date(year, month + 1, 0) ) 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const lastDay = new Date(year, month + 1, 0);
 
-  const amountOfWeek = () => {
-    // Первый день текущего месяца
-    let currentDay = new Date(year, month, 1);
-
-    // Корректный номер дня недели
-      let dayNum = currentDay.getDay() - 1;
-      if (dayNum < 0) {
-        dayNum = 6
-      }
-
-      // Счетчик недель
-      let weeks = 0
-      while (currentDay.getMonth() == month) {
-        let i = 0;
-        // create tr
-        while (i < 7) {
-          // create td
-
-          // Проверять первую линию недель на пустые поля
-          if (weeks == 0) {
-            // Если счетчик i меьнше номера дня недели - поля пустые
-            if (i < dayNum) {
-              i++
-              // td is empte ''
-              continue;
-            } else {
-              // td is currentDat.getDate
-              console.log(currentDay.getDate());
-              currentDay.setDate(currentDay.getDate() + 1);
-            }
-          } else {
-            // td is currentDat.getDate
-            console.log(currentDay.getDate());
-            currentDay.setDate(currentDay.getDate() + 1);
-          }
-          
-          // Create td in tr
-          i++
-          if (currentDay.getDate() == lastDay) {
-            break
-          }
-        }
-        // add to table
-        weeks++
-      }
+  const day = new Date(year, month, 1)
+  
+  const dayNumber = day.getDay() - 1;
+  if (dayNumber === 0) {
+    dayNumber = 6;
   }
+  let weekLines = [];
+  let week = 0;
 
-  // const showDays = (week, day) => {
-  //   let dayFlag = 0;
-  //   let daysArray = [];
-  //   let weekArray = [];
-
-
-  //   while(dayFlag < lastDay.getDate()) {
-  //     dayFlag++
-  //     if (dayFlag <= 7) {
-  //       daysArray.push(dayFlag);
-  //     }
-  //   }
+  const calendar = () => {
+    let dayLines = [];
+    let weekRender = []
     
-  //   console.log(daysArray);
+    while (day.getMonth() == month) {
+      let i = 0;
+      // Дни недели
+      const weekLenght = () => {while(i < 7) {
+        // Проверка первой недели
+        if (week ==0) {
+          // Заполняем пустые Td
+          if (i < dayNumber) {
+            dayLines.push(<td key={i}></td>);
+          } else {
+            dayLines.push(<td key={i}>{day.getDate()}</td>)
+            day.setDate(day.getDate() + 1);
+          }
+          // Заполняем Td
+        } else {
+            dayLines.push(<td key={i}>{day.getDate()}</td>)
+            day.setDate(day.getDate() + 1);
+        }
+        i++
+      } }//
+      weekLenght()
+      if(day.getDate() == lastDay.getDate()) {
+        
+        break
+      }
+      week++
+      
+      return weekLines.push(<tr key={week}>{dayLines}</tr>), calendar()
 
-  //   return daysArray;
-  // }
+    } //
+    const lastWeekArray = Array.from(weekLines[weekLines.length-1].props.children);
+ 
+    // Убираем даты следующего месяца
+    lastWeekArray.filter((e) => {
+      if (e.props.children < 7) {
+        weekLines[weekLines.length-1].props.children.pop();
+      }
+    }) //
+    while(weekLines[weekLines.length-1].props.children.length < 7) {
+      let flag = weekLines[weekLines.length-1].props.children.length;
+      weekLines[weekLines.length-1].props.children.push(<td key={flag}></td>);
+      // console.log(weekLines[weekLines.length-1].props.children)
+    }
+    // Убираем даты следующего месяца
+
+
+
+    
+    
+    return weekLines
+    
+    
+  }
   
-  
-  // console.log('Date --> ', date)
-  // console.log('Year -->', year)
-  // console.log('Moth -->', month)
-  // console.log('Last day --> ', lastDay.getDate())
+
+  const changeDate = (way) => {
+    console.log(way)
+  }
 
   return (
     <div className="App">
       <Todo
-        getDate={amountOfWeek}
+        calendar={calendar}
+        day={day.getDate()}
+        changeDate={changeDate}
       >
         
       </Todo>
