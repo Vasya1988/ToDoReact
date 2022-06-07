@@ -10,6 +10,9 @@ const CalendarContainer = (props) => {
         >
             <CalendarNavigation 
                 changeDate={props.changeDate}
+                allMonth={props.allMonth}
+                month={props.month}
+                year={props.year}
             />
             <DaysOfWeek />
             <CalendarWrap 

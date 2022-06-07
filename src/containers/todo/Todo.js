@@ -14,6 +14,9 @@ const Todo = (props) => {
                 calendar={props.calendar}
                 day={props.day}
                 changeDate={props.changeDate}
+                allMonth={props.allMonth}
+                month={props.month}
+                year={props.year}
             />
 
 

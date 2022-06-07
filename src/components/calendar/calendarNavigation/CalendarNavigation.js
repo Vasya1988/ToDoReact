@@ -12,9 +12,23 @@ const CalendarNavigation =(props) => {
                     props.changeDate(e.target.dataset.button)
                 }}
             ></button>
-            <span className={classes.Month}>gf</span>
+            <span className={classes.Month}>
+                {
+                    props.allMonth.filter((e, index) => {
+                        if (index === props.month) {
+                            return e
+                        }
+                    })
+                }
+                {` ${props.year}`}
+
+            </span>
             <button
                 className={classes.ForwardButton}
+                data-button='forward'
+                onClick={(e) => {
+                    props.changeDate(e.target.dataset.button)
+                }}
             ></button>
         </div>
     )
