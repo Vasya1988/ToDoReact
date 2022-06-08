@@ -5,64 +5,87 @@ import Todo from './containers/todo/Todo';
 
 function App() {
 
+  // Месяцы, для отображения в календаре
   const allMonth = [
     'January', 'Ferburay', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ]
+  // Объект даты
   const [date, setDate] = useState(new Date());
   const year = date.getFullYear();
   const month = date.getMonth();
   const lastDay = new Date(year, month + 1, 0);
 
+  // Работаем в календаре с этой переменной
   const day = new Date(year, month, 1)
-  
-  // const [dayNumber, setDayNumber] = useState(day.getDay() - 1);
-  // if (dayNumber === 0) {
-  //   dayNumber = 6;
-  // }
+  // Сюда добавляем недели меяца
   let weekLines = [];
+  // Счетчик количества недель
   let week = 0;
 
+  // Рендер календаря
   const calendar = () => {
+    // Счетчик
     let i = 0;
+    // Сюда добалвяем дни недели
     let dayLines = [];
-    
+
     while (day.getMonth() === month) {
       // Дни недели
       const weekLenght = () => {
-        while(i < 7) {
-        // Проверка первой недели
-        if (week ==0) {
-          // Заполняем пустые Td
-          if (i < day.getDay()-1) {
-            if (month === 4) {
-              console.log('May --> ', month)
+        // Выполнять, когда i и day.getDay() оба равны нулю, что бы сдвинуть пустые дни в первой неделе
+        if ( i === day.getDay() ) {
+          console.log('fff');
+          i = -7;
+          while ( i < 0) {
+            // Проверка первой недели
+            if (week ==0) {
+              // Заполняем пустые Td
+              if (i < day.getDay()-1) {
+                dayLines.push(<td key={i}></td>);
+              } else {
+                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                day.setDate(day.getDate() + 1);
+              }
+              // Заполняем Td
+            } else {
+                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                day.setDate(day.getDate() + 1);
             }
-            // console.log(day.getDay())
-            dayLines.push(<td key={i}></td>);
-          } else {
-            dayLines.push(<td key={i}>{day.getDate()}</td>)
-            day.setDate(day.getDate() + 1);
+            i++
           }
-          // Заполняем Td
-        } else {
-            dayLines.push(<td key={i}>{day.getDate()}</td>)
-            day.setDate(day.getDate() + 1);
-        }
-        i++
-      } }//
-      weekLenght()
-      if(day.getDate() > lastDay.getDate()) {
+        } // while i<0
 
+        // Выполнять в обычном порядке
+        else {
+          while(i < 7) {
+            // Проверка первой недели
+            if (week ==0) {
+              // Заполняем пустые Td
+              if (i < day.getDay()-1) {
+                dayLines.push(<td key={i}></td>);
+              } else {
+                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                day.setDate(day.getDate() + 1);
+              }
+              // Заполняем Td
+            } else {
+                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                day.setDate(day.getDate() + 1);
+            }
+            i++
+          } }// while i<7
+        }
+      // Замкнуть цикл (day.getMonth() === month)
+      if(day.getDate() > lastDay.getDate()) {
         break
       }
+      // Повторно вызывать, для добавления следующей недели
+      weekLenght()
       week++
-      // console.log('DayNumber --> ', dayNumber)
-      // console.log('Day --> ', day.getDate())
-      // console.log('i --> ', i)
-      changeDate()
       return weekLines.push(<tr key={week}>{dayLines}</tr>), calendar()
-    } //
+    } // (day.getMonth() === month)
 
+    // Последняя неделя, для удаления дней следующего месяца
     const lastWeekArray = Array.from(weekLines[weekLines.length-1].props.children);
  
     // Убираем даты следующего месяца
@@ -74,14 +97,13 @@ function App() {
     while(weekLines[weekLines.length-1].props.children.length < 7) {
       let flag = weekLines[weekLines.length-1].props.children.length;
       weekLines[weekLines.length-1].props.children.push(<td key={flag}></td>);
-      // console.log(weekLines[weekLines.length-1].props.children)
     }
     // Убираем даты следующего месяца
-    console.log('is i --> ', i)
     i++
     return weekLines
   } //
 
+  // Смена месяца
   const changeDate = (way) => {
     if (way === 'back') {
       console.log(way);
