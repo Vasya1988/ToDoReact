@@ -4,3 +4,7 @@
     display: flex;
     justify-content: space-around
 }
+.DaysOfWeek span {
+    font-weight: bold;
+    color: rgb(48, 48, 48);
+}

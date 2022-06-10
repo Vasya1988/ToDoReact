@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from '../calendarWrap/CalendarWrap.module.css';
-import Tr from './tr/Tr';
+
 
 
 const CalendarWrap = (props) => {

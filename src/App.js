@@ -1,7 +1,8 @@
 import './App.css';
 import React, { useState } from 'react';
-
 import Todo from './containers/todo/Todo';
+import { Routes, Route, Link } from 'react-router-dom'
+
 
 function App() {
 
@@ -34,7 +35,6 @@ function App() {
       const weekLenght = () => {
         // Выполнять, когда i и day.getDay() оба равны нулю, что бы сдвинуть пустые дни в первой неделе
         if ( i === day.getDay() ) {
-          console.log('fff');
           i = -7;
           while ( i < 0) {
             // Проверка первой недели
@@ -106,7 +106,6 @@ function App() {
   // Смена месяца
   const changeDate = (way) => {
     if (way === 'back') {
-      console.log(way);
       setDate(new Date(year, month-1));
 
     } else if (way === 'forward') {
