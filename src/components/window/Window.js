@@ -3,6 +3,7 @@ import classes from '../window/Window.module.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import CalendarContainer from '../../containers/calendarContainer/CalendarContainer';
 import Task from '../task/Task';
+import TaskList from '../taskList/TaskList';
 
 const Window = (props) => {
     return (
@@ -14,7 +15,7 @@ const Window = (props) => {
                 <Link to='/my-page'>Todo</Link>
             </div>
             <Routes>
-                <Route path='/my-page' element={<Task />} />
+                <Route path='/my-page' element={<TaskList />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}
                     day={props.day}
