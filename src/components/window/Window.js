@@ -15,7 +15,14 @@ const Window = (props) => {
                 <Link to='/my-page'>Todo</Link>
             </div>
             <Routes>
-                <Route path='/my-page' element={<TaskList />} />
+                <Route path='/my-page' element={<TaskList 
+                    addTask={props.addTask}
+                    setTask={props.setTask}
+                    task={props.task}
+                    setTaskList={props.setTaskList}
+                    taskList={props.taskList}
+                    removeTask={props.removeTask}
+                />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}
                     day={props.day}

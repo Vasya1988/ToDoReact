@@ -1,19 +1,20 @@
 import classes from '../task/Task.module.css';
 import Done from '../../ui/buttons/done/Done';
 import Delete from '../../ui/buttons/delete/Delete';
-import TaskName from './taskName/TaskName';
 
-const Task = () => {
+
+const Task = (props) => {
     return (
         <div
             className={classes.Task}
         >
-            <TaskName />
-            <div
-                className={classes.TaskButtons}
-            >
+            <span className={classes.TaskName}>{`${props.id}. ${props.name}`}</span>
+            <div className={classes.TaskButtons}>
                 <Done />
-                <Delete />
+                <Delete 
+                    removeTask={props.removeTask}
+                    id={props.id}
+                />
             </div>
         </div>
     )

@@ -1,10 +1,11 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Todo from './containers/todo/Todo';
-import { Routes, Route, Link } from 'react-router-dom'
 
 
 function App() {
+
+  // ------------------ Calendar
 
   // Месяцы, для отображения в календаре
   const allMonth = [
@@ -113,6 +114,39 @@ function App() {
       setDate(new Date(date.getFullYear(), date.getMonth()+1))
     }
   }
+  // ------------------ Calendar //
+
+  // --------------------------------
+
+  // ------------------ Task list
+
+  const [taskList, setTaskList] = useState(new Array);
+  const [task, setTask] = useState(''); 
+  useEffect((e) => {
+    console.log('Task list --> ', taskList);
+  }, [taskList])
+
+  // The function of add tasks
+  const addTask = (taskName) => {
+    if (taskName === '') {
+      alert('Enter your task');
+      return false
+    } else {
+      setTaskList([...taskList, {name: taskName, id: taskList.length + 1, completed: false}]);
+      setTask('');
+    }
+    
+  }
+
+  // The function of remove task
+  const removeTask = (task) => {
+    setTaskList(taskList.splice(task-1, 1));
+    console.log(taskList)
+    
+  }
+
+ // ------------------ Task list //
+
 
   return (
     <div className="App">
@@ -123,11 +157,21 @@ function App() {
         allMonth={allMonth}
         month={day.getMonth()}
         year={year}
+        addTask={addTask}
+        setTask={setTask}
+        task={task}
+        taskList={taskList}
+        setTaskList={setTaskList}
+        removeTask={removeTask}
       >
         
       </Todo>
     </div>
   );
+  
+
+
+ 
 }
 
 export default App;

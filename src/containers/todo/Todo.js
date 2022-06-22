@@ -15,6 +15,12 @@ const Todo = (props) => {
                 allMonth={props.allMonth}
                 month={props.month}
                 year={props.year}
+                addTask={props.addTask}
+                setTask={props.setTask}
+                taskList={props.taskList}
+                setTaskList={props.setTaskList}
+                task={props.task}
+                removeTask={props.removeTask}
             />
             
             {/* <CalendarContainer 

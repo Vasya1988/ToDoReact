@@ -7,7 +7,7 @@
     padding: 4px 8px;
     box-sizing: border-box;
 
-    border: 1px solid;
+    /* border: 1px solid; */
 
     display: flex;
     flex-wrap: wrap;
@@ -20,4 +20,10 @@
     display: flex;
     flex: 1 1 130px;
     justify-content: space-around;
+}
+.TaskName {
+    margin: 0;
+    flex: 1 1 156px;
+    /* background-color: rgb(233, 255, 193); */
+    text-align: start;
 }
