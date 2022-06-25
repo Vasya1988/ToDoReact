@@ -140,8 +140,16 @@ function App() {
 
   // The function of remove task
   const removeTask = (task) => {
-    setTaskList(taskList.splice(task-1, 1));
-    console.log(taskList)
+
+    setTaskList(taskList.filter((event) => {
+      if (event.id != task) {
+        
+        return event, event.id = taskList.length
+      }
+      // console.log(event)
+    }))
+    // setTaskList(taskList.splice(task-1, 1));
+    // console.log('Id of delete --> ', task)
     
   }
 
