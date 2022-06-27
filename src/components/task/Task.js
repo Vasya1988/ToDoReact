@@ -8,7 +8,7 @@ const Task = (props) => {
         <div
             className={classes.Task}
         >
-            <span className={classes.TaskName}>{`${props.id}. ${props.name}`}</span>
+            <span className={classes.TaskName}>{`${props.taskNumber + 1}. ${props.name}`}</span>
             <div className={classes.TaskButtons}>
                 <Done />
                 <Delete 

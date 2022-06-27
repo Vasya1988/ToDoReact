@@ -22,6 +22,7 @@ const Window = (props) => {
                     setTaskList={props.setTaskList}
                     taskList={props.taskList}
                     removeTask={props.removeTask}
+                    createId={props.createId}
                 />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}

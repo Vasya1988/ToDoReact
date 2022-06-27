@@ -36,6 +36,7 @@ const TaskList = (props) => {
                         name={task.name} 
                         id={task.id}
                         removeTask={props.removeTask}
+                        taskNumber={id}
                     />
                 })
             }

@@ -132,19 +132,38 @@ function App() {
       alert('Enter your task');
       return false
     } else {
-      setTaskList([...taskList, {name: taskName, id: taskList.length + 1, completed: false}]);
+      setTaskList([...taskList, {name: taskName, id: createId(), completed: false}]);
       setTask('');
     }
-    
   }
+
+  // The function of Create ID
+  const createId = (currentId) => {
+    const words = ['a', 'b', 'c', 'd', 'e'];
+    const randomNumber = Math.floor(Math.random() * 1000);
+    const randomWord = words[Math.floor(Math.random() * words.length + 1)];
+    let getId = `${randomNumber}${randomWord}`;
+
+    taskList.filter((e) => {
+      if (getId === e.id) {
+        return console.log('THe Filter from createID --> ', e.id)
+
+      } 
+    })
+    console.log(getId)
+    return getId
+  }
+  
 
   // The function of remove task
   const removeTask = (task) => {
 
-    setTaskList(taskList.filter((event) => {
+    setTaskList(taskList.filter((event, number) => {
       if (event.id != task) {
         
-        return event, event.id = taskList.length
+        return event //event.id = number
+      } else {
+        console.log('Not equal')
       }
       // console.log(event)
     }))
@@ -171,6 +190,7 @@ function App() {
         taskList={taskList}
         setTaskList={setTaskList}
         removeTask={removeTask}
+        createId={createId}
       >
         
       </Todo>
