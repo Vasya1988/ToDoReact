@@ -7,7 +7,7 @@
     padding: 4px 8px;
     box-sizing: border-box;
 
-    /* border: 1px solid; */
+    border-bottom: 1px solid grey;
 
     display: flex;
     flex-wrap: wrap;

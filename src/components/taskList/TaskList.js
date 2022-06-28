@@ -6,6 +6,16 @@ import { useEffect } from 'react';
 
 const TaskList = (props) => {
 
+    const checkTask = () => {
+        if (props.taskList.length === 0) {
+            return `You have ${props.taskList.length} tasks`
+        } else if (props.taskList.length === 1) {
+            return `You have ${props.taskList.length} task`
+        } else {
+            return `You have ${props.taskList.length} tasks`
+        }
+    }
+
     return (
         <div className={classes.TaskList}>
             <form>
@@ -27,7 +37,7 @@ const TaskList = (props) => {
                 
                 >Add</button>
             </form>
-            <h3 className={classes.TaskTitle}>You have 32 tasks</h3>
+            <h3 className={classes.TaskTitle}>{checkTask()}</h3>
 
             {
                 props.taskList.map((task, id) => {
