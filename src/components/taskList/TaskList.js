@@ -18,7 +18,18 @@ const TaskList = (props) => {
 
     return (
         <div className={classes.TaskList}>
+            <h2>Enter task</h2>
             <form>
+                <input 
+                    className={classes.EnterTask} 
+                    type='text'
+                    value={props.task}
+                    placeholder='Enter your task...'
+                    onChange={(event) => {
+                        props.setTask(event.target.value)
+                    }}
+                
+                ></input>
                 <input className={classes.DateTask} type='date'></input>
                 <button 
                     className={classes.AddButton}
@@ -29,17 +40,9 @@ const TaskList = (props) => {
                 
                 >Add</button>
                 
-                <input 
-                    className={classes.EnterTask} 
-                    type='text'
-                    value={props.task}
-                    onChange={(event) => {
-                        props.setTask(event.target.value)
-                    }}
                 
-                ></input>
             </form>
-            <h3 className={classes.TaskTitle}>{checkTask()}</h3>
+            <h2 className={classes.TaskTitle}>{checkTask()}</h2>
 
             {
                 props.taskList.map((task, id) => {

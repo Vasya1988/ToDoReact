@@ -1,10 +1,9 @@
 .Delete {
-    /* width: 100%;
-    max-width: 80px;
-    height: 30px; */
+    padding: 8px 32px;
+    box-sizing: border-box;
 
-    background-color: #e7383200;
-    /* color:  #fff; */
+    background-color: #DE5B5B;
+    color:  #fff;
     font-weight: bolder;
     cursor: pointer;
 

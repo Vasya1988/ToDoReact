@@ -1,23 +1,18 @@
 .Task {
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
 
     margin-bottom: 20px;
 
-    padding: 4px 8px;
     box-sizing: border-box;
 /* 
     border-bottom: 1px solid grey; */
 
     display: flex;
-    flex-wrap: wrap; 
-    flex-direction: column;
-    justify-content: space-between;
 }
 .TaskButtons {
     width: 100%;
     display: flex;
-    flex: 1 1 130px;
     justify-content: flex-end;
 }
 .TaskButtons > button {
