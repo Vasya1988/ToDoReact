@@ -1,6 +1,7 @@
 import classes from '../task/Task.module.css';
 import Done from '../../ui/buttons/done/Done';
 import Delete from '../../ui/buttons/delete/Delete';
+import Edit from '../../ui/buttons/edit/Edit';
 
 
 const Task = (props) => {
@@ -9,19 +10,19 @@ const Task = (props) => {
             <div
                 className={classes.Task}
             >
-                <span className={classes.TaskName}>{`${props.taskNumber + 1}. ${props.name}`}</span>
-                <div className={classes.TaskButtons}>
-                    <Done />
-                    <Delete 
-                        removeTask={props.removeTask}
-                        id={props.id}
-                    />
+                <div className={classes.TaskEdit}>
+                    <span>12.06.2022</span>
+                    <div className={classes.TaskButtons}>
+                        <Edit />
+                        <Delete 
+                            removeTask={props.removeTask}
+                            id={props.id}
+                        />
+                        <Done />
+                    </div>
+                    
                 </div>
-            </div>
-            <div>
-                <span>15 March 1988</span>
-                <input type='date'></input>
-                {console.log('dddddddddd')}
+                <h3 className={classes.TaskName}>{`${props.taskNumber + 1}. ${props.name}`}</h3>
             </div>
         </>    
     )

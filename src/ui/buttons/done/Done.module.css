@@ -1,10 +1,12 @@
 .Done {
-    width: 100%;
+    /* width: 100%;
     max-width: 80px;
-    height: 30px;
+    height: 30px; */
 
-    background-color: #4ec955;
-    color:  #fff;
+    background-color: #4ec95500;
+    /* color:  #fff; */
+    cursor: pointer;
+    font-weight: bolder;
 
     border: none;
 }

@@ -132,9 +132,14 @@ function App() {
       alert('Enter your task');
       return false
     } else {
-      setTaskList([...taskList, {name: taskName, id: createId(), completed: false}]);
+      setTaskList([...taskList, {date: setDateForTask(), name: taskName, id: createId(), completed: false}]);
       setTask('');
     }
+  }
+
+  // Set date for task
+  const setDateForTask = () => {
+    console.log('check')
   }
 
   // The function of Create ID

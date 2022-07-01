@@ -19,6 +19,16 @@ const TaskList = (props) => {
     return (
         <div className={classes.TaskList}>
             <form>
+                <input className={classes.DateTask} type='date'></input>
+                <button 
+                    className={classes.AddButton}
+                    onClick={(click) => {
+                        click.preventDefault();
+                        props.addTask(props.task)
+                    }}
+                
+                >Add</button>
+                
                 <input 
                     className={classes.EnterTask} 
                     type='text'
@@ -28,14 +38,6 @@ const TaskList = (props) => {
                     }}
                 
                 ></input>
-                <button 
-                    className={classes.AddButton}
-                    onClick={(click) => {
-                        click.preventDefault();
-                        props.addTask(props.task)
-                    }}
-                
-                >Add</button>
             </form>
             <h3 className={classes.TaskTitle}>{checkTask()}</h3>
 

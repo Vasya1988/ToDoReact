@@ -6,24 +6,38 @@
 
     padding: 4px 8px;
     box-sizing: border-box;
-
-    border-bottom: 1px solid grey;
+/* 
+    border-bottom: 1px solid grey; */
 
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
- 
 }
 .TaskButtons {
     width: 100%;
     display: flex;
     flex: 1 1 130px;
-    justify-content: space-around;
+    justify-content: flex-end;
+}
+.TaskButtons > button {
+    margin-left: 10px;
+}
+.TaskEdit {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid grey;
+}
+.TaskEdit > h4 {
+    padding: 0;
+    margin: 0;
+
 }
 .TaskName {
+    width: 100%;
     margin: 0;
-    flex: 1 1 156px;
+    margin-top: 6px;
+    /* flex: 1 1 156px; */
     /* background-color: rgb(233, 255, 193); */
     text-align: start;
 }
