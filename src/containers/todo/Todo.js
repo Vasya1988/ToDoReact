@@ -22,6 +22,7 @@ const Todo = (props) => {
                 task={props.task}
                 removeTask={props.removeTask}
                 createId={props.createId}
+                getDate={props.getDate}
             />
             
             {/* <CalendarContainer 

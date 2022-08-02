@@ -30,7 +30,12 @@ const TaskList = (props) => {
                     }}
                 
                 ></input>
-                <input className={classes.DateTask} type='date'></input>
+                <input 
+                    className={classes.DateTask}         type='date'
+                    onChange={(getDate) => {
+                        props.getDate(getDate.target.value)
+                    }}
+                ></input>
                 <button 
                     className={classes.AddButton}
                     onClick={(click) => {

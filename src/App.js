@@ -114,6 +114,10 @@ function App() {
       setDate(new Date(date.getFullYear(), date.getMonth()+1))
     }
   }
+
+  // Выделение нужной даты в календаре
+
+  
   // ------------------ Calendar //
 
   // --------------------------------
@@ -121,6 +125,7 @@ function App() {
   // ------------------ Task list
 
   const [taskList, setTaskList] = useState(new Array);
+  const [taskDate, setTaskDate] = useState(null)
   const [task, setTask] = useState(''); 
   useEffect((e) => {
     console.log('Task list --> ', taskList);
@@ -132,14 +137,9 @@ function App() {
       alert('Enter your task');
       return false
     } else {
-      setTaskList([...taskList, {date: setDateForTask(), name: taskName, id: createId(), completed: false}]);
+      setTaskList([...taskList, {date: taskDate, name: taskName, id: createId(), completed: false}]);
       setTask('');
     }
-  }
-
-  // Set date for task
-  const setDateForTask = () => {
-    console.log('check')
   }
 
   // The function of Create ID
@@ -159,7 +159,6 @@ function App() {
     return getId
   }
   
-
   // The function of remove task
   const removeTask = (task) => {
 
@@ -196,6 +195,7 @@ function App() {
         setTaskList={setTaskList}
         removeTask={removeTask}
         createId={createId}
+        getDate={setTaskDate}
       >
         
       </Todo>
