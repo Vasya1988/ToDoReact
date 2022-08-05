@@ -2,10 +2,12 @@ import classes from './TaskList.module.css';
 
 import App from '../../App';
 import Task from '../task/Task';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const TaskList = (props) => {
 
+    const [taskName, setTaskName] = useState('');
+    const [date, setDate] = useState(null);
     const checkTask = () => {
         if (props.taskList.length === 0) {
             return `You have ${props.taskList.length} tasks`
@@ -23,24 +25,27 @@ const TaskList = (props) => {
                 <input 
                     className={classes.EnterTask} 
                     type='text'
-                    value={props.task}
+                    value={taskName}
                     placeholder='Enter your task...'
                     onChange={(event) => {
-                        props.setTask(event.target.value)
+                        setTaskName(event.target.value)
                     }}
                 
                 ></input>
                 <input 
                     className={classes.DateTask}         type='date'
-                    onChange={(getDate) => {
-                        props.getDate(getDate.target.value)
+                    onChange={(date) => {
+                        setDate(date.target.value);
                     }}
                 ></input>
                 <button 
                     className={classes.AddButton}
                     onClick={(click) => {
                         click.preventDefault();
-                        props.addTask(props.task)
+                        props.addTask(taskName, date);
+                        props.currentDate(date);
+                        props.colorDate(date)
+                        setTaskName('');
                     }}
                 
                 >Add</button>
@@ -51,6 +56,7 @@ const TaskList = (props) => {
 
             {
                 props.taskList.map((task, id) => {
+                    console.log(props.taskList)
                     return <Task 
                         key={id} 
                         name={task.name} 

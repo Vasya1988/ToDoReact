@@ -72,6 +72,7 @@ function App() {
             } else {
                 dayLines.push(<td key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
+
             }
             i++
           } }// while i<7
@@ -125,20 +126,13 @@ function App() {
   // ------------------ Task list
 
   const [taskList, setTaskList] = useState(new Array);
-  const [taskDate, setTaskDate] = useState(null)
-  const [task, setTask] = useState(''); 
-  useEffect((e) => {
-    console.log('Task list --> ', taskList);
-  }, [taskList])
-
   // The function of add tasks
-  const addTask = (taskName) => {
+  const addTask = (taskName, date) => {
     if (taskName === '') {
       alert('Enter your task');
       return false
     } else {
-      setTaskList([...taskList, {date: taskDate, name: taskName, id: createId(), completed: false}]);
-      setTask('');
+      setTaskList([...taskList, {date: date, name: taskName, id: createId(), completed: false}]);
     }
   }
 
@@ -176,6 +170,21 @@ function App() {
     
   }
 
+  // Запись дат созданных задач
+  const [currentDate, setCurrentDate] = useState();
+
+  // Подсвечивание созданной даты в календаре
+  const colorDate = (date, dayOnPage) => {
+    let dateArray = date.split('-');
+    let year = Number(dateArray[0]);
+    let month = Number(dateArray[1]);
+    let day = Number(dateArray[2]);
+    
+    console.log(year, month, day)
+    console.log(dateArray)
+  }
+
+
  // ------------------ Task list //
 
 
@@ -189,13 +198,12 @@ function App() {
         month={day.getMonth()}
         year={year}
         addTask={addTask}
-        setTask={setTask}
-        task={task}
         taskList={taskList}
         setTaskList={setTaskList}
         removeTask={removeTask}
         createId={createId}
-        getDate={setTaskDate}
+        currentDate={setCurrentDate}
+        colorDate={colorDate}
       >
         
       </Todo>
