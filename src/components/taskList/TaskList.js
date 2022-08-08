@@ -35,7 +35,9 @@ const TaskList = (props) => {
                 <input 
                     className={classes.DateTask}         type='date'
                     onChange={(date) => {
-                        setDate(date.target.value);
+                        let getDate = date.target.value.split('-');
+                        console.log()
+                        props.currentDate(getDate);
                     }}
                 ></input>
                 <button 
@@ -43,8 +45,8 @@ const TaskList = (props) => {
                     onClick={(click) => {
                         click.preventDefault();
                         props.addTask(taskName, date);
-                        props.currentDate(date);
-                        props.colorDate(date)
+                        // props.currentDate(date);
+                        // props.colorDate(date)
                         setTaskName('');
                     }}
                 

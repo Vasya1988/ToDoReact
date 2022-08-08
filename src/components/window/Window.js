@@ -35,6 +35,7 @@ const Window = (props) => {
                     month={props.month}
                     year={props.year}
                     currentDate={props.currentDate}
+                    isDate={props.isDate}
                 />} />
             </Routes>
         </>    

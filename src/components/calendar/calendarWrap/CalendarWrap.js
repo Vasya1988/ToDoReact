@@ -10,7 +10,7 @@ const CalendarWrap = (props) => {
             >
                 <thead></thead>
                 <tbody>
-                    {props.calendar()}
+                    {props.calendar(props.isDate)}
                 </tbody>
               
         </table>

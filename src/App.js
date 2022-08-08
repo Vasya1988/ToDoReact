@@ -25,7 +25,7 @@ function App() {
   let week = 0;
 
   // Рендер календаря
-  const calendar = () => {
+  const calendar = (taskDay) => {
     // Счетчик
     let i = 0;
     // Сюда добалвяем дни недели
@@ -70,9 +70,19 @@ function App() {
               }
               // Заполняем Td
             } else {
+
+              if (day.getDate() === Number(currentDate[2])) {
+                console.log(day.getMonth())
+                console.log(day.getFullYear())
+                console.log(day.getDate(), currentDate)
+                dayLines.push(<td style={{background:'#475867'}} key={i}>{day.getDate()}</td>)
+                day.setDate(day.getDate() + 1);
+              } else {
                 dayLines.push(<td key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
-
+              }
+                
+                
             }
             i++
           } }// while i<7
@@ -174,15 +184,21 @@ function App() {
   const [currentDate, setCurrentDate] = useState();
 
   // Подсвечивание созданной даты в календаре
-  const colorDate = (date, dayOnPage) => {
-    let dateArray = date.split('-');
-    let year = Number(dateArray[0]);
-    let month = Number(dateArray[1]);
-    let day = Number(dateArray[2]);
+  // const colorDate = (date, dayOnPage) => {
+  //   let dateArray = date.split('-');
+  //   let year = Number(dateArray[0]);
+  //   let month = Number(dateArray[1]);
+  //   let day = Number(dateArray[2]);
+
+  //   // if (date === dayOnPage ) {
+
+  //   // }
     
-    console.log(year, month, day)
-    console.log(dateArray)
-  }
+  //   console.log(weekLines[2].props.children[3].$$typeof)
+  //   console.log(year, month, day)
+  //   console.log(dateArray)
+  //   return day
+  // }
 
 
  // ------------------ Task list //
@@ -203,7 +219,8 @@ function App() {
         removeTask={removeTask}
         createId={createId}
         currentDate={setCurrentDate}
-        colorDate={colorDate}
+        isDate={currentDate}
+        // colorDate={colorDate}
       >
         
       </Todo>

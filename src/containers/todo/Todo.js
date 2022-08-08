@@ -24,6 +24,7 @@ const Todo = (props) => {
                 createId={props.createId}
                 getDate={props.getDate}
                 currentDate={props.currentDate}
+                isDate={props.isDate}
                 colorDate={props.colorDate}
             />
             
