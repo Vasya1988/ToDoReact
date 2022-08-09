@@ -71,11 +71,8 @@ function App() {
               // Заполняем Td
             } else {
 
-              if (day.getDate() === Number(currentDate[2])) {
-                console.log(day.getMonth())
-                console.log(day.getFullYear())
-                console.log(day.getDate(), currentDate)
-                dayLines.push(<td style={{background:'#475867'}} key={i}>{day.getDate()}</td>)
+              if (currentDate && day.getDate() === Number(currentDate[2]) && day.getMonth() + 1 === Number(currentDate[1]) && day.getFullYear() === Number(currentDate[0])) {
+                dayLines.push(<td style={{background:'#5BDE60'}} key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               } else {
                 dayLines.push(<td key={i}>{day.getDate()}</td>)
