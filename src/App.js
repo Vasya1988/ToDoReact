@@ -71,13 +71,29 @@ function App() {
               // Заполняем Td
             } else {
 
-              if (currentDate && day.getDate() === Number(currentDate[2]) && day.getMonth() + 1 === Number(currentDate[1]) && day.getFullYear() === Number(currentDate[0])) {
-                dayLines.push(<td style={{background:'#5BDE60'}} key={i}>{day.getDate()}</td>)
-                day.setDate(day.getDate() + 1);
+              if (currentDate.length != 0) {
+                currentDate.map((date) => {
+                  console.log(date)
+                  // if (day.getDate() === Number(date[2]) && day.getMonth() + 1 === Number(date[1]) && day.getFullYear() === Number(date[0])) {
+                  //   dayLines.push(<td 
+                  //     style={{background:'#5BDE60'}} 
+                  //     key={i}>
+                  //       {day.getDate()}</td>)
+                  //   day.setDate(day.getDate() + 1);
+                  // }
+                })
               } else {
                 dayLines.push(<td key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
+
+              // if (currentDate && day.getDate() === Number(currentDate[2]) && day.getMonth() + 1 === Number(currentDate[1]) && day.getFullYear() === Number(currentDate[0])) {
+              //   dayLines.push(<td style={{background:'#5BDE60'}} key={i}>{day.getDate()}</td>)
+              //   day.setDate(day.getDate() + 1);
+              // } else {
+              //   dayLines.push(<td key={i}>{day.getDate()}</td>)
+              //   day.setDate(day.getDate() + 1);
+              // }
                 
                 
             }
@@ -178,25 +194,7 @@ function App() {
   }
 
   // Запись дат созданных задач
-  const [currentDate, setCurrentDate] = useState();
-
-  // Подсвечивание созданной даты в календаре
-  // const colorDate = (date, dayOnPage) => {
-  //   let dateArray = date.split('-');
-  //   let year = Number(dateArray[0]);
-  //   let month = Number(dateArray[1]);
-  //   let day = Number(dateArray[2]);
-
-  //   // if (date === dayOnPage ) {
-
-  //   // }
-    
-  //   console.log(weekLines[2].props.children[3].$$typeof)
-  //   console.log(year, month, day)
-  //   console.log(dateArray)
-  //   return day
-  // }
-
+  const [currentDate, setCurrentDate] = useState([]);
 
  // ------------------ Task list //
 

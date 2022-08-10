@@ -26,6 +26,7 @@ const Window = (props) => {
                     getDate={props.getDate}
                     currentDate={props.currentDate}
                     colorDate={props.colorDate}
+                    isDate={props.isDate}
                 />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}

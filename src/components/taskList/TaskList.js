@@ -8,6 +8,7 @@ const TaskList = (props) => {
 
     const [taskName, setTaskName] = useState('');
     const [date, setDate] = useState(null);
+    const [dateOnThisPage, setDateOnThisPage] = useState();
     const checkTask = () => {
         if (props.taskList.length === 0) {
             return `You have ${props.taskList.length} tasks`
@@ -36,8 +37,9 @@ const TaskList = (props) => {
                     className={classes.DateTask}         type='date'
                     onChange={(date) => {
                         let getDate = date.target.value.split('-');
-                        console.log()
-                        props.currentDate(getDate);
+                        setDateOnThisPage(getDate);
+                        console.log('Get date --> ', getDate)
+                        console.log(dateOnThisPage)
                     }}
                 ></input>
                 <button 
@@ -45,9 +47,16 @@ const TaskList = (props) => {
                     onClick={(click) => {
                         click.preventDefault();
                         props.addTask(taskName, date);
-                        // props.currentDate(date);
-                        // props.colorDate(date)
+                        props.currentDate([...props.isDate, 
+                            {
+                                year: dateOnThisPage[0],
+                                month: dateOnThisPage[1],
+                                day: dateOnThisPage[2]
+                            }]);
+                        
                         setTaskName('');
+                        console.log(props.isDate)
+                        
                     }}
                 
                 >Add</button>
