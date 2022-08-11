@@ -40,6 +40,9 @@ tr {
   justify-content: center;
   align-items: center;
 }
+.tdActive {
+  background:#5BDE60
+}
 td {
   margin: 2px;
 

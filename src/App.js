@@ -1,4 +1,4 @@
-import './App.css';
+import classes from './App.module.css';
 import React, { useState, useEffect } from 'react';
 import Todo from './containers/todo/Todo';
 
@@ -28,6 +28,8 @@ function App() {
   const calendar = (taskDay) => {
     // Счетчик
     let i = 0;
+    let active = 0;
+    let notActive = 0;
     // Сюда добалвяем дни недели
     let dayLines = [];
 
@@ -65,39 +67,35 @@ function App() {
               if (i < day.getDay()-1) {
                 dayLines.push(<td key={i}></td>);
               } else {
-                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                dayLines.push(<td className={activeColor(day.getDate())} key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
-
-              if (currentDate.length != 0) {
-                currentDate.map((date) => {
-                  console.log(date)
-                  // if (day.getDate() === Number(date[2]) && day.getMonth() + 1 === Number(date[1]) && day.getFullYear() === Number(date[0])) {
-                  //   dayLines.push(<td 
-                  //     style={{background:'#5BDE60'}} 
-                  //     key={i}>
-                  //       {day.getDate()}</td>)
-                  //   day.setDate(day.getDate() + 1);
-                  // }
-                })
-              } else {
-                dayLines.push(<td key={i}>{day.getDate()}</td>)
-                day.setDate(day.getDate() + 1);
-              }
-
-              // if (currentDate && day.getDate() === Number(currentDate[2]) && day.getMonth() + 1 === Number(currentDate[1]) && day.getFullYear() === Number(currentDate[0])) {
-              //   dayLines.push(<td style={{background:'#5BDE60'}} key={i}>{day.getDate()}</td>)
-              //   day.setDate(day.getDate() + 1);
-              // } else {
-              //   dayLines.push(<td key={i}>{day.getDate()}</td>)
-              //   day.setDate(day.getDate() + 1);
-              // }
-                
-                
+              dayLines.push(<td className={activeColor(day.getDate())} key={i}>{day.getDate()}</td>)
+              day.setDate(day.getDate() + 1);
             }
+            // console.dir(dayLines[0]._owner)
+
             i++
+
+
+
+            // currentDate.forEach((e, index) => {
+            //   if (day.getDate() === Number(e.day) && day.getMonth() + 1 === Number(e.month) && day.getFullYear() === Number(e.year)) {
+            //     dayLines.push(<td style={{background:'#5BDE60'}} key={`${active}- active`}>{day.getDate()}</td>)
+            //     day.setDate(day.getDate() + 1);
+            //     console.log('active')
+            //   } else {
+            //     dayLines.push(<td key={`${notActive} - not active`}>{day.getDate()}</td>)
+            //     day.setDate(day.getDate() + 1);
+            //     notActive = notActive + 1
+            //   }
+            // })
+
+
+
+
           } }// while i<7
         }
       // Замкнуть цикл (day.getMonth() === month)
@@ -127,6 +125,22 @@ function App() {
     i++
     return weekLines
   } //
+
+
+  // Смена цвета дня
+  const activeColor = (day) => {
+    let color;
+    if (currentDate.length > 0) {
+      console.log('currentDaye > 0')
+      currentDate.filter((e) => {
+        if (day === Number(e.day)) {
+          console.log('check');
+          color = classes.tdActive
+        }
+      })
+    }
+    return color
+  }
 
   // Смена месяца
   const changeDate = (way) => {
