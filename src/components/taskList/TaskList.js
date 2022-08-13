@@ -34,7 +34,8 @@ const TaskList = (props) => {
                 
                 ></input>
                 <input 
-                    className={classes.DateTask}         type='date'
+                    className={classes.DateTask}         
+                    type='date'
                     onChange={(date) => {
                         let getDate = date.target.value.split('-');
                         setDateOnThisPage(getDate);
@@ -46,7 +47,7 @@ const TaskList = (props) => {
                     className={classes.AddButton}
                     onClick={(click) => {
                         click.preventDefault();
-                        props.addTask(taskName, date);
+                        props.addTask(taskName, date, dateOnThisPage);
                         props.currentDate([...props.isDate, 
                             {
                                 year: dateOnThisPage[0],

@@ -67,12 +67,12 @@ function App() {
               if (i < day.getDay()-1) {
                 dayLines.push(<td key={i}></td>);
               } else {
-                dayLines.push(<td className={activeColor(day.getDate())} key={i}>{day.getDate()}</td>)
+                dayLines.push(<td className={activeColor(day)} key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
-              dayLines.push(<td className={activeColor(day.getDate())} key={i}>{day.getDate()}</td>)
+              dayLines.push(<td className={activeColor(day)} key={i}>{day.getDate()}</td>)
               day.setDate(day.getDate() + 1);
             }
             // console.dir(dayLines[0]._owner)
@@ -133,7 +133,7 @@ function App() {
     if (currentDate.length > 0) {
       console.log('currentDaye > 0')
       currentDate.filter((e) => {
-        if (day === Number(e.day)) {
+        if (day.getDate() === Number(e.day) && day.getMonth() + 1 === Number(e.month) && day.getFullYear() === Number(e.year)) {
           console.log('check');
           color = classes.tdActive
         }
@@ -164,12 +164,12 @@ function App() {
 
   const [taskList, setTaskList] = useState(new Array);
   // The function of add tasks
-  const addTask = (taskName, date) => {
+  const addTask = (taskName, date, isDate) => {
     if (taskName === '') {
       alert('Enter your task');
       return false
     } else {
-      setTaskList([...taskList, {date: date, name: taskName, id: createId(), completed: false}]);
+      setTaskList([...taskList, {date: {day: isDate[2], month: isDate[1], year: isDate[0]}, name: taskName, id: createId(), completed: false}]);
     }
   }
 
