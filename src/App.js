@@ -130,10 +130,10 @@ function App() {
   // Смена цвета дня
   const activeColor = (day) => {
     let color;
-    if (currentDate.length > 0) {
+    if (taskList.length > 0) {
       console.log('currentDaye > 0')
-      currentDate.filter((e) => {
-        if (day.getDate() === Number(e.day) && day.getMonth() + 1 === Number(e.month) && day.getFullYear() === Number(e.year)) {
+      taskList.filter((e) => {
+        if (day.getDate() === Number(e.date.day) && day.getMonth() + 1 === Number(e.date.month) && day.getFullYear() === Number(e.date.year)) {
           console.log('check');
           color = classes.tdActive
         }
@@ -207,9 +207,6 @@ function App() {
     
   }
 
-  // Запись дат созданных задач
-  const [currentDate, setCurrentDate] = useState([]);
-
  // ------------------ Task list //
 
 
@@ -227,8 +224,6 @@ function App() {
         setTaskList={setTaskList}
         removeTask={removeTask}
         createId={createId}
-        currentDate={setCurrentDate}
-        isDate={currentDate}
         // colorDate={colorDate}
       >
         

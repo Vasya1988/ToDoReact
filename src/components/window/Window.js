@@ -24,9 +24,7 @@ const Window = (props) => {
                     removeTask={props.removeTask}
                     createId={props.createId}
                     getDate={props.getDate}
-                    currentDate={props.currentDate}
                     colorDate={props.colorDate}
-                    isDate={props.isDate}
                 />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}
@@ -35,8 +33,7 @@ const Window = (props) => {
                     allMonth={props.allMonth}
                     month={props.month}
                     year={props.year}
-                    currentDate={props.currentDate}
-                    isDate={props.isDate}
+
                 />} />
             </Routes>
         </>    

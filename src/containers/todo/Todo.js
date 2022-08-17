@@ -23,8 +23,6 @@ const Todo = (props) => {
                 removeTask={props.removeTask}
                 createId={props.createId}
                 getDate={props.getDate}
-                currentDate={props.currentDate}
-                isDate={props.isDate}
                 colorDate={props.colorDate}
             />
             

@@ -18,8 +18,6 @@ const CalendarContainer = (props) => {
             <CalendarWrap 
                 day={props.day}
                 calendar={props.calendar}
-                setCurrentDate={props.setCurrentDate}
-                isDate={props.isDate}
             />
         </div>
     )

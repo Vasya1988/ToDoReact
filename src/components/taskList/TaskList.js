@@ -48,16 +48,7 @@ const TaskList = (props) => {
                     onClick={(click) => {
                         click.preventDefault();
                         props.addTask(taskName, date, dateOnThisPage);
-                        props.currentDate([...props.isDate, 
-                            {
-                                year: dateOnThisPage[0],
-                                month: dateOnThisPage[1],
-                                day: dateOnThisPage[2]
-                            }]);
-                        
                         setTaskName('');
-                        console.log(props.isDate)
-                        
                     }}
                 
                 >Add</button>
