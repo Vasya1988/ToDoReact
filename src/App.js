@@ -1,6 +1,7 @@
 import classes from './App.module.css';
 import React, { useState, useEffect } from 'react';
 import Todo from './containers/todo/Todo';
+import Task from './components/task/Task';
 
 
 function App() {
@@ -46,12 +47,18 @@ function App() {
               if (i < day.getDay()-1) {
                 dayLines.push(<td key={i}></td>);
               } else {
-                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                dayLines.push(<td onClick={(item)=>{
+                  showTaskOfDay(Number(item.target.innerText))
+                  console.log(dayTask)
+                }}  key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
-                dayLines.push(<td key={i}>{day.getDate()}</td>)
+                dayLines.push(<td onClick={(item)=>{
+                  showTaskOfDay(Number(item.target.innerText))
+                  console.log(dayTask)
+                }}  key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
             }
             i++
@@ -67,35 +74,22 @@ function App() {
               if (i < day.getDay()-1) {
                 dayLines.push(<td key={i}></td>);
               } else {
-                dayLines.push(<td className={activeColor(day)} key={i}>{day.getDate()}</td>)
+                dayLines.push(<td onClick={(item)=>{
+                  showTaskOfDay(Number(item.target.innerText))
+                  console.log(dayTask)
+                }} className={activeColor(day)} key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
-              dayLines.push(<td className={activeColor(day)} key={i}>{day.getDate()}</td>)
+              dayLines.push(<td onClick={(item)=>{
+                showTaskOfDay(Number(item.target.innerText))
+                console.log(dayTask)
+              }}  className={activeColor(day)} key={i}>{day.getDate()}</td>)
               day.setDate(day.getDate() + 1);
             }
             // console.dir(dayLines[0]._owner)
-
             i++
-
-
-
-            // currentDate.forEach((e, index) => {
-            //   if (day.getDate() === Number(e.day) && day.getMonth() + 1 === Number(e.month) && day.getFullYear() === Number(e.year)) {
-            //     dayLines.push(<td style={{background:'#5BDE60'}} key={`${active}- active`}>{day.getDate()}</td>)
-            //     day.setDate(day.getDate() + 1);
-            //     console.log('active')
-            //   } else {
-            //     dayLines.push(<td key={`${notActive} - not active`}>{day.getDate()}</td>)
-            //     day.setDate(day.getDate() + 1);
-            //     notActive = notActive + 1
-            //   }
-            // })
-
-
-
-
           } }// while i<7
         }
       // Замкнуть цикл (day.getMonth() === month)
@@ -127,21 +121,36 @@ function App() {
   } //
 
 
-  // Смена цвета дня
+  // Смена цвета дня в календаре
   const activeColor = (day) => {
     let color;
     if (taskList.length > 0) {
-      console.log('currentDaye > 0')
-      taskList.filter((e) => {
+      // console.log('currentDaye > 0')
+      taskList.filter((e, index) => {
         if (day.getDate() === Number(e.date.day) && day.getMonth() + 1 === Number(e.date.month) && day.getFullYear() === Number(e.date.year)) {
-          console.log('check');
-          color = classes.tdActive
+          // console.log('check');
+          color = classes.tdActive;
+          console.log(e)
         }
       })
     }
     return color
   }
+  // onClick - ловим день со страницы календаря
+  const [dayTask, setDayTask] = useState();
+  const [dayMonth, setDayMonth] = useState();
+  const [dayYear, setDayYear] = useState();
+  const showTaskOfDay = (showDay) => {
+    taskList.map((e, id) => {
+      if (year === Number(e.date.year) && day.getMonth() === Number(e.date.month) && showDay === Number(e.date.day)) {
+        console.log("it's woooooork");
+        return <Task key={id} name={e.name} taskNumber={id} />
 
+      } else {
+        console.log('No work')
+      }
+    })
+  }
   // Смена месяца
   const changeDate = (way) => {
     if (way === 'back') {
@@ -152,9 +161,6 @@ function App() {
       setDate(new Date(date.getFullYear(), date.getMonth()+1))
     }
   }
-
-  // Выделение нужной даты в календаре
-
   
   // ------------------ Calendar //
 
@@ -224,6 +230,7 @@ function App() {
         setTaskList={setTaskList}
         removeTask={removeTask}
         createId={createId}
+        dayTask={[dayTask, setDayTask]}
         // colorDate={colorDate}
       >
         

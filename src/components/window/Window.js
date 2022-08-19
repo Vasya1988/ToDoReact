@@ -33,7 +33,8 @@ const Window = (props) => {
                     allMonth={props.allMonth}
                     month={props.month}
                     year={props.year}
-
+                    taskList={props.taskList}
+                    dayTask={props.dayTask}
                 />} />
             </Routes>
         </>    
