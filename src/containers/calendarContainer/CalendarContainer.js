@@ -9,7 +9,8 @@ const CalendarContainer = (props) => {
     
     const [currentDay, setCurrentDay] = useState();
 
-    console.log('here --> ', props.month + 1, props.year, props.day)
+    // console.log('here --> ', props.month + 1, props.year)
+    // console.log('here --> ', props.getDay)
 
     return (
         <div
@@ -20,6 +21,7 @@ const CalendarContainer = (props) => {
                 allMonth={props.allMonth}
                 month={props.month}
                 year={props.year}
+                setFlag={props.setFlag}
             />
             <DaysOfWeek />
             <CalendarWrap 
@@ -28,15 +30,23 @@ const CalendarContainer = (props) => {
                 // setCurrentDay={setCurrentDay}
             />
             
-            {/* {
+            {
                 props.taskList.map((e, id) => {
-                    console.log(e)
-                    if (props.month + 1 === Number(e.date.month) && props.year === Number(e.date.year)) {
-                        return <Task key={id} name={e.name} taskNumber={id} removeTask={props.removeTask}/>
-                    }
+                    //if (props.flag === true) {
+                        if (props.month + 1 === Number(e.date.month) && props.year === Number(e.date.year) && props.getDay === Number(e.date.day)) {
+                            return <Task key={id} name={e.name} taskNumber={id} removeTask={props.removeTask} changeTaskStatus={props.changeTaskStatus} id={e.id}/>
+                        }
+                    //} else {
+                    //    return false
+                    //}
+                    
                     
                 })
-            } */}
+            }
+
+            {
+                
+            }
         </div>
     )
 }

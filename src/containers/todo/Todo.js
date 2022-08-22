@@ -25,6 +25,11 @@ const Todo = (props) => {
                 getDate={props.getDate}
                 colorDate={props.colorDate}
                 dayTask={props.dayTask}
+                getDay={props.getDay}
+                flag={props.flag}
+                setFlag={props.setFlag}
+                changeTaskStatus={props.changeTaskStatus}
+                taskDone={props.taskDone}
             />
             
             {/* <CalendarContainer 

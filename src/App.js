@@ -48,16 +48,29 @@ function App() {
                 dayLines.push(<td key={i}></td>);
               } else {
                 dayLines.push(<td onClick={(item)=>{
-                  showTaskOfDay(Number(item.target.innerText))
-                  console.log(dayTask)
+                  setGetDay(Number(item.target.innerText))
+                  setFlag(()=>{
+                    if (flag === false) {
+                      return true
+                    } else {
+                      return false
+                    }
+                  })
+
                 }}  key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
                 dayLines.push(<td onClick={(item)=>{
-                  showTaskOfDay(Number(item.target.innerText))
-                  console.log(dayTask)
+                  setGetDay(Number(item.target.innerText))
+                  setFlag(()=>{
+                    if (flag === false) {
+                      return true
+                    } else {
+                      return false
+                    }
+                  })
                 }}  key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
             }
@@ -75,16 +88,30 @@ function App() {
                 dayLines.push(<td key={i}></td>);
               } else {
                 dayLines.push(<td onClick={(item)=>{
-                  showTaskOfDay(Number(item.target.innerText))
-                  console.log(dayTask)
+                  setGetDay(Number(item.target.innerText))
+                  setFlag(()=>{
+                    if (flag === false) {
+                      return true
+                    } else {
+                      return false
+                    }
+                  })
                 }} className={activeColor(day)} key={i}>{day.getDate()}</td>)
                 day.setDate(day.getDate() + 1);
               }
               // Заполняем Td
             } else {
               dayLines.push(<td onClick={(item)=>{
-                showTaskOfDay(Number(item.target.innerText))
-                console.log(dayTask)
+                setGetDay(Number(item.target.innerText))
+                
+                setFlag(()=>{
+                  if (item.target.className != '' && flag === false) {
+                    console.log(item.target.className)
+                    return true
+                  } else {
+                    return false
+                  }
+                })
               }}  className={activeColor(day)} key={i}>{day.getDate()}</td>)
               day.setDate(day.getDate() + 1);
             }
@@ -120,7 +147,6 @@ function App() {
     return weekLines
   } //
 
-
   // Смена цвета дня в календаре
   const activeColor = (day) => {
     let color;
@@ -130,27 +156,16 @@ function App() {
         if (day.getDate() === Number(e.date.day) && day.getMonth() + 1 === Number(e.date.month) && day.getFullYear() === Number(e.date.year)) {
           // console.log('check');
           color = classes.tdActive;
-          console.log(e)
         }
       })
     }
     return color
   }
   // onClick - ловим день со страницы календаря
-  const [dayTask, setDayTask] = useState();
-  const [dayMonth, setDayMonth] = useState();
-  const [dayYear, setDayYear] = useState();
-  const showTaskOfDay = (showDay) => {
-    taskList.map((e, id) => {
-      if (year === Number(e.date.year) && day.getMonth() === Number(e.date.month) && showDay === Number(e.date.day)) {
-        console.log("it's woooooork");
-        return <Task key={id} name={e.name} taskNumber={id} />
+  const [getDay, setGetDay] = useState();
+  // Флаг показать/скрыть задачи по клику на дату
+  const [flag, setFlag] = useState(false);
 
-      } else {
-        console.log('No work')
-      }
-    })
-  }
   // Смена месяца
   const changeDate = (way) => {
     if (way === 'back') {
@@ -168,6 +183,7 @@ function App() {
 
   // ------------------ Task list
 
+  // Хук который хранит список задач
   const [taskList, setTaskList] = useState(new Array);
   // The function of add tasks
   const addTask = (taskName, date, isDate) => {
@@ -177,6 +193,21 @@ function App() {
     } else {
       setTaskList([...taskList, {date: {day: isDate[2], month: isDate[1], year: isDate[0]}, name: taskName, id: createId(), completed: false}]);
     }
+  }
+
+  // Хук который хранит завершенные задачи
+  const [taskDone, setTaskDone] = useState(new Array);
+  console.log(taskDone)
+  const changeTaskStatus = (taskId) => {
+
+    setTaskList(taskList.filter((event, number) => {
+      if (event.id != taskId) {
+        return event //event.id = number
+      } else {
+        setTaskDone([...taskDone, event])
+        console.log('Not equal')
+      }
+    }))
   }
 
   // The function of Create ID
@@ -197,20 +228,14 @@ function App() {
   }
   
   // The function of remove task
-  const removeTask = (task) => {
-
+  const removeTask = (taskId) => {
     setTaskList(taskList.filter((event, number) => {
-      if (event.id != task) {
-        
+      if (event.id != taskId) {
         return event //event.id = number
       } else {
         console.log('Not equal')
       }
-      // console.log(event)
     }))
-    // setTaskList(taskList.splice(task-1, 1));
-    // console.log('Id of delete --> ', task)
-    
   }
 
  // ------------------ Task list //
@@ -230,7 +255,11 @@ function App() {
         setTaskList={setTaskList}
         removeTask={removeTask}
         createId={createId}
-        dayTask={[dayTask, setDayTask]}
+        getDay={getDay}
+        flag={flag}
+        setFlag={setFlag}
+        changeTaskStatus={changeTaskStatus}
+        taskDone={taskDone}
         // colorDate={colorDate}
       >
         

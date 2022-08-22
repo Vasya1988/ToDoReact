@@ -25,6 +25,8 @@ const Window = (props) => {
                     createId={props.createId}
                     getDate={props.getDate}
                     colorDate={props.colorDate}
+                    changeTaskStatus={props.changeTaskStatus}
+                    taskDone={props.taskDone}
                 />} />
                 <Route path='/calendar' element={<CalendarContainer
                     calendar={props.calendar}
@@ -35,8 +37,30 @@ const Window = (props) => {
                     year={props.year}
                     taskList={props.taskList}
                     dayTask={props.dayTask}
+                    getDay={props.getDay}
+                    flag={props.flag}
+                    setFlag={props.setFlag}
+                    removeTask={props.removeTask}
+                    changeTaskStatus={props.changeTaskStatus}
+                    taskDone={props.taskDone}
                 />} />
             </Routes>
+
+            {
+                props.taskDone.map((e, id) => {
+                    return (
+                        <div>
+                            <h1>Done</h1>
+                            <Task 
+                                key={e.id}
+                                name={e.name}
+                                taskNumber={id}
+                                removeTask={props.removeTask}
+                            />
+                        </div>
+                    )
+                })
+            }
         </>    
     )
 }

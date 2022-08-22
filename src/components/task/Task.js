@@ -15,7 +15,10 @@ const Task = (props) => {
                         removeTask={props.removeTask}
                         id={props.id}
                     />
-                    <Done />
+                    <Done 
+                        changeTaskStatus={props.changeTaskStatus}
+                        id={props.id}
+                    />
                 </div>
             </div>
         </>    

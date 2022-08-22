@@ -9,7 +9,8 @@ const CalendarNavigation =(props) => {
                 className={classes.BackButton}
                 data-button='back'
                 onClick={(e) => {
-                    props.changeDate(e.target.dataset.button)
+                    props.changeDate(e.target.dataset.button);
+                    // props.setFlag(false)
                 }}
             ></button>
             <span className={classes.Month}>
@@ -27,7 +28,8 @@ const CalendarNavigation =(props) => {
                 className={classes.ForwardButton}
                 data-button='forward'
                 onClick={(e) => {
-                    props.changeDate(e.target.dataset.button)
+                    props.changeDate(e.target.dataset.button);
+                    // props.setFlag(false)
                 }}
             ></button>
         </div>
