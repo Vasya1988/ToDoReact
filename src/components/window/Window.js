@@ -4,8 +4,20 @@ import { Routes, Route, Link } from 'react-router-dom';
 import CalendarContainer from '../../containers/calendarContainer/CalendarContainer';
 import Task from '../task/Task';
 import TaskList from '../taskList/TaskList';
+import TaskDone from '../taskDone/TaskDone';
 
 const Window = (props) => {
+
+    const renderDone = () => {
+        if (props.taskDone.length != 0) {
+            return (
+                <div>
+                    <h1>Done</h1>
+                </div>
+            )
+        }
+    }
+
     return (
         <>
             <div
@@ -45,20 +57,20 @@ const Window = (props) => {
                     taskDone={props.taskDone}
                 />} />
             </Routes>
+            {
+                renderDone()
+            }
 
             {
+                
                 props.taskDone.map((e, id) => {
-                    return (
-                        <div>
-                            <h1>Done</h1>
-                            <Task 
-                                key={e.id}
-                                name={e.name}
-                                taskNumber={id}
-                                removeTask={props.removeTask}
-                            />
-                        </div>
-                    )
+                    return <TaskDone 
+                        key={`${e.id}__done`}
+                        name={e.name}
+                        taskNumber={id}
+                        removeTask={props.removeTaskDone}
+                        id={e.id}
+                    />
                 })
             }
         </>    

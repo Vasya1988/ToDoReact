@@ -24,3 +24,10 @@
     color: rgb(231, 231, 231);
     background-color: rgb(48, 48, 48);
 }
+.Done {
+    width: 100%;
+    max-width: 600px;
+}
+.Done h1 {
+    text-align: center;
+}

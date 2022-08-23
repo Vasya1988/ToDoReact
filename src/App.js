@@ -45,7 +45,7 @@ function App() {
             if (week ==0) {
               // Заполняем пустые Td
               if (i < day.getDay()-1) {
-                dayLines.push(<td key={i}></td>);
+                dayLines.push(<td style={{cursor: 'default',opacity:0}} key={i}></td>);
               } else {
                 dayLines.push(<td onClick={(item)=>{
                   setGetDay(Number(item.target.innerText))
@@ -85,7 +85,7 @@ function App() {
             if (week ==0) {
               // Заполняем пустые Td
               if (i < day.getDay()-1) {
-                dayLines.push(<td key={i}></td>);
+                dayLines.push(<td style={{cursor: 'default',opacity:0}} key={i}></td>);
               } else {
                 dayLines.push(<td onClick={(item)=>{
                   setGetDay(Number(item.target.innerText))
@@ -140,7 +140,7 @@ function App() {
     }) //
     while(weekLines[weekLines.length-1].props.children.length < 7) {
       let flag = weekLines[weekLines.length-1].props.children.length;
-      weekLines[weekLines.length-1].props.children.push(<td key={flag}></td>);
+      weekLines[weekLines.length-1].props.children.push(<td style={{cursor: 'default',opacity:0}} key={flag}></td>);
     }
     // Убираем даты следующего месяца
     i++
@@ -187,6 +187,7 @@ function App() {
   const [taskList, setTaskList] = useState(new Array);
   // The function of add tasks
   const addTask = (taskName, date, isDate) => {
+    isDate = isDate || ['no date', 'no date', 'no date']
     if (taskName === '') {
       alert('Enter your task');
       return false
@@ -197,7 +198,7 @@ function App() {
 
   // Хук который хранит завершенные задачи
   const [taskDone, setTaskDone] = useState(new Array);
-  console.log(taskDone)
+  console.log('Task done --> ', taskDone)
   const changeTaskStatus = (taskId) => {
 
     setTaskList(taskList.filter((event, number) => {
@@ -238,6 +239,17 @@ function App() {
     }))
   }
 
+  // The function of remove task Done
+  const removeTaskDone = (taskId) => {
+    setTaskDone(taskDone.filter((event, number) => {
+      if (event.id != taskId) {
+        return event //event.id = number
+      } else {
+        console.log('Not equal')
+      }
+    }))
+  }
+
  // ------------------ Task list //
 
 
@@ -254,6 +266,7 @@ function App() {
         taskList={taskList}
         setTaskList={setTaskList}
         removeTask={removeTask}
+        removeTaskDone={removeTaskDone}
         createId={createId}
         getDay={getDay}
         flag={flag}

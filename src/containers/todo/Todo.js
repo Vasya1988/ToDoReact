@@ -21,6 +21,7 @@ const Todo = (props) => {
                 setTaskList={props.setTaskList}
                 task={props.task}
                 removeTask={props.removeTask}
+                removeTaskDone={props.removeTaskDone}
                 createId={props.createId}
                 getDate={props.getDate}
                 colorDate={props.colorDate}
